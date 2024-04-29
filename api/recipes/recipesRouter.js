@@ -6,7 +6,7 @@ router.get("/:recipe_id", (req, res, next) => {
     .then((recipe) => {
       res.status(200).json(recipe);
     })
-    .catch(next({ status: 400, message: "recipe not found" }));
+    .catch(next({ status: 404, message: "recipe not found" }));
 });
 router.get((err, req, res, next) => {
   res.status(500).json({
