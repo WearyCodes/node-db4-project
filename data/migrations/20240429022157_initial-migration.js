@@ -11,6 +11,16 @@ exports.up = async function (knex) {
     })
     .createTable("steps", (table) => {
       table.increments("step_id");
+      table.string("step_text", 200).notNullable();
+      table.string("step_number").notNullable();
+      table
+        .integer("recipe_id")
+        .unsigned()
+        .notNullable()
+        .references("recipe_id")
+        .inTable("recipes")
+        .onDelete("RESTRICT")
+        .onUpdate("RESTRICT");
     })
     .createTable("step_ingredients", (table) => {
       table.increments("step_ingredient_id");
